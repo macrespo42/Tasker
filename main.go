@@ -19,6 +19,8 @@ func main() {
 		tasks.Add(userCommand.param)
 	case "list":
 		tasks.List(userCommand.param)
+	case "update":
+		tasks.Update(userCommand.id, userCommand.param)
 	case "delete":
 		tasks.Delete(userCommand.id)
 	default:

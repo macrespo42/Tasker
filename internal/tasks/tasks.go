@@ -76,6 +76,21 @@ func List(status string) {
 	}
 }
 
+func Update(id int, description string) {
+	tasks, err := getTasks()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for index, task := range tasks {
+		if task.Id == id {
+			tasks[index].Description = description
+		}
+	}
+
+	syncDb(tasks)
+}
+
 func Delete(id int) {
 	tasks, err := getTasks()
 	if err != nil {
