@@ -19,6 +19,8 @@ func main() {
 		tasks.Add(userCommand.param)
 	case "list":
 		tasks.List(userCommand.param)
+	case "delete":
+		tasks.Delete(userCommand.id)
 	default:
 		panic("unrecognized command")
 	}
