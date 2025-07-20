@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -14,8 +13,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("action: %v, id: %v, param: %v\n", userCommand.action, userCommand.id, userCommand.param)
-	if userCommand.action == "add" {
-		tasks.AddTask(userCommand.param)
+	// fmt.Printf("action: %v, id: %v, param: %v\n", userCommand.action, userCommand.id, userCommand.param)
+	switch userCommand.action {
+	case "add":
+		tasks.Add(userCommand.param)
+	case "list":
+		tasks.List(userCommand.param)
+	default:
+		panic("unrecognized command")
 	}
 }

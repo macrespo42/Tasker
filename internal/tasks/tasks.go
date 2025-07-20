@@ -35,7 +35,7 @@ func getTasks() ([]Task, error) {
 	return tasks, nil
 }
 
-func AddTask(description string) {
+func Add(description string) {
 	tasks, err := getTasks()
 	if err != nil {
 		log.Fatal(err)
@@ -43,12 +43,7 @@ func AddTask(description string) {
 	newTask := Task{Id: len(tasks) + 1, Description: description, Status: "todo", CreatedAt: time.Now(), UpdatedAt: time.Now()}
 	tasks = append(tasks, newTask)
 
-	fmt.Println("____________________DEBUG_________________")
-	fmt.Println(newTask)
-	fmt.Println(tasks)
-	fmt.Println("____________________DEBUG_________________")
-
-	file, err := os.OpenFile("./db/tasks.json", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
+	file, err := os.OpenFile("./db/tasks.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -56,4 +51,18 @@ func AddTask(description string) {
 
 	encoder := json.NewEncoder(file)
 	encoder.Encode(tasks)
+}
+
+func List(status string) {
+	tasks, err := getTasks()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, task := range tasks {
+		if status == "" || task.Status == status {
+			fmt.Printf("Id: %v\nDescription: %v\nStatus: %v\nCreated at: %v\n", task.Id, task.Description, task.Status, task.CreatedAt)
+			fmt.Printf("--------------------------------------------------------------------------------\n")
+		}
+	}
 }
