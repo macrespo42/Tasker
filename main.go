@@ -13,7 +13,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// fmt.Printf("action: %v, id: %v, param: %v\n", userCommand.action, userCommand.id, userCommand.param)
 	switch userCommand.action {
 	case "add":
 		tasks.Add(userCommand.param)
@@ -21,6 +20,10 @@ func main() {
 		tasks.List(userCommand.param)
 	case "update":
 		tasks.Update(userCommand.id, userCommand.param)
+	case "mark-in-progress":
+		tasks.UpdateStatus(userCommand.id, "in-progress")
+	case "mark-done":
+		tasks.UpdateStatus(userCommand.id, "done")
 	case "delete":
 		tasks.Delete(userCommand.id)
 	default:

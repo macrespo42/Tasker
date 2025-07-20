@@ -106,3 +106,18 @@ func Delete(id int) {
 
 	syncDb(newTasks)
 }
+
+func UpdateStatus(id int, status string) {
+	tasks, err := getTasks()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for index, task := range tasks {
+		if task.Id == id {
+			tasks[index].Status = status
+		}
+	}
+
+	syncDb(tasks)
+}
