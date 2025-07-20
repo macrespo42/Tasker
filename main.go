@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/macrespo42/Tasker/internal/tasks"
 )
 
 func main() {
@@ -12,5 +14,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("action: %v, id: %v, param: %v", userCommand.action, userCommand.id, userCommand.param)
+	fmt.Printf("action: %v, id: %v, param: %v\n", userCommand.action, userCommand.id, userCommand.param)
+	if userCommand.action == "add" {
+		tasks.AddTask(userCommand.param)
+	}
 }
