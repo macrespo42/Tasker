@@ -1,4 +1,4 @@
-# Tasker CLI ✅
+# [Tasker CLI](https://roadmap.sh/projects/task-tracker) ✅
 
 **A simple command-line tool to manage your tasks efficiently.**  
 Track what you need to do, what you're working on, and what you've completed — all from your terminal.
@@ -36,10 +36,9 @@ Run any command using the format:
 task-cli <command> <arguments>
 
 Available Commands:
-
-    add "Task description"
-    ➜ Add a new task
-    Example:
+add "Task description"
+➜ Add a new task
+Example:
 
 task-cli add "Buy groceries"
 
