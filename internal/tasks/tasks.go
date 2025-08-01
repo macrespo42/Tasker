@@ -82,10 +82,17 @@ func Update(id int, description string) {
 		log.Fatal(err)
 	}
 
+	hasUpdate := false
+
 	for index, task := range tasks {
 		if task.Id == id {
 			tasks[index].Description = description
+			hasUpdate = true
 		}
+	}
+
+	if !hasUpdate {
+		log.Fatalf("The Task with id: %v doesn't exist\n", id)
 	}
 
 	syncDb(tasks)
@@ -97,11 +104,19 @@ func Delete(id int) {
 		log.Fatal(err)
 	}
 
+	hasDelete := false
+
 	newTasks := make([]Task, 0)
 	for _, task := range tasks {
 		if task.Id != id {
 			newTasks = append(newTasks, task)
+		} else {
+			hasDelete = true
 		}
+	}
+
+	if hasDelete == false {
+		log.Fatalf("The Task with id: %v doesn't exist\n", id)
 	}
 
 	syncDb(newTasks)
@@ -113,10 +128,17 @@ func UpdateStatus(id int, status string) {
 		log.Fatal(err)
 	}
 
+	hasUpdate := false
+
 	for index, task := range tasks {
 		if task.Id == id {
 			tasks[index].Status = status
+			hasUpdate = true
 		}
+	}
+
+	if !hasUpdate {
+		log.Fatalf("The Task with id: %v doesn't exist\n", id)
 	}
 
 	syncDb(tasks)

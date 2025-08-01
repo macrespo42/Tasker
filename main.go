@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -8,6 +9,7 @@ import (
 )
 
 func main() {
+	log.SetFlags(0)
 	userCommand, err := parseUserInput(os.Args)
 	if err != nil {
 		log.Fatal(err)
@@ -27,6 +29,6 @@ func main() {
 	case "delete":
 		tasks.Delete(userCommand.id)
 	default:
-		panic("unrecognized command")
+		fmt.Println("Unrecognized command")
 	}
 }
