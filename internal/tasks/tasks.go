@@ -47,6 +47,9 @@ func syncDb(tasks []Task) {
 }
 
 func Add(description string) {
+	if description == "" {
+		log.Fatal("Add command: task description missing")
+	}
 	tasks, err := getTasks()
 	if err != nil {
 		log.Fatal(err)
@@ -63,6 +66,10 @@ func Add(description string) {
 }
 
 func List(status string) {
+	if status != "" && status != "done" && status != "in-progress" && status != "todo" {
+		log.Fatal("List command incorrect status provided")
+	}
+
 	tasks, err := getTasks()
 	if err != nil {
 		log.Fatal(err)
@@ -77,6 +84,9 @@ func List(status string) {
 }
 
 func Update(id int, description string) {
+	if description == "" {
+		log.Fatal("Update command: incorrect description provided")
+	}
 	tasks, err := getTasks()
 	if err != nil {
 		log.Fatal(err)
@@ -123,6 +133,9 @@ func Delete(id int) {
 }
 
 func UpdateStatus(id int, status string) {
+	if status != "done" && status != "in-progress" && status != "todo" {
+		log.Fatal("Mark command:  incorrect status provided")
+	}
 	tasks, err := getTasks()
 	if err != nil {
 		log.Fatal(err)
