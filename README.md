@@ -123,8 +123,8 @@ Each task is stored in the tasks.json file with the following properties:
 
 ## Error Handling
 
-The CLI gracefully handles common errors such as:
-Missing or incorrect command arguments
-Invalid task IDs
-File not found (automatically created)
-JSON parsing errors
+- The CLI gracefully handles common errors such as:
+- Missing or incorrect command arguments
+- Invalid task IDs
+- File not found (automatically created)
+- JSON parsing errors
